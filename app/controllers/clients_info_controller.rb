@@ -1,0 +1,2 @@
+class ClientsInfoController < ApplicationController
+end
