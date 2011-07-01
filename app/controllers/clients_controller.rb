@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
   def new
     @title = "Sign up"
+    @client = Client.new
   end
   
   def show
