@@ -102,6 +102,11 @@ describe ClientsController do
         end.should change(Client, :count).by(1)
       end
       
+      it "should sign the client in" do
+        post :create, :client => @attr
+        controller.should be_signed_in
+      end
+      
       it "should redirect to the client show page" do
         post :create, :client => @attr
         response.should redirect_to(client_path(assigns(:client)))

@@ -40,10 +40,38 @@ describe SessionsController do
         flash.now[:error].should =~ /invalid/i
       end
       
+    end     #end Invalid Signin
+    
+    describe "Successful Signin" do
       
+      before(:each) do
+        @client = Factory(:client)
+        @attr = { :email => @client.email, :password => @client.password }
+      end
       
-    end   #end failure
+      it "should sign the client in" do
+        post :create, :session => @attr
+        controller.current_client.should == @client
+        controller.should be_signed_in
+      end
+
+      it "should redirect to the client show page" do
+        post :create, :session => @attr
+        response.should redirect_to(client_path(@client))
+      end
+      
+    end     #end Successful Signin
   
-  end     #end POST
+  end       #end POST
+  
+  describe "DELETE 'destroy'" do
+
+    it "should sign a client out" do
+      test_sign_in(Factory(:client))
+      delete :destroy
+      controller.should_not be_signed_in
+      response.should redirect_to(root_path)
+    end
+  end
 
 end

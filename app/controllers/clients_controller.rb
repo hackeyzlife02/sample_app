@@ -13,6 +13,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(params[:client])
     if @client.save
+      sign_in @client
       redirect_to @client, :flash => { :success => "Welcome to the Jungle!" }
     else
       @title = "Sign Up"

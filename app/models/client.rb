@@ -28,6 +28,12 @@ class Client < ActiveRecord::Base
       return nil      if client.nil?
       return client   if client.has_password?(submitted_password)
     end
+    
+    def authenticate_with_salt(id, cookie_salt)
+      client = find_by_id(id)
+      (client && client.salt == cookie_salt) ? client : nil
+    end
+    
   end
   
   private 
