@@ -1,0 +1,10 @@
+<div class="client_info">
+	<%= gravatar_for current_client, :size => 30 %>
+	<p>
+		<%= current_client.first_name %> <%= current_client.last_name %>
+	</p>
+	<a href="<%= client_path(current_client) %>">View Profile</a><br />
+	<span class="client_addrs">
+		<%= pluralize(current_client.client_addrs.count, "Addresses") %>
+	</span>
+</div>

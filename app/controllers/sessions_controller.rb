@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       render 'new'
     else
       sign_in client
-      redirect_to client
+      redirect_back_or client
     end
   end
   

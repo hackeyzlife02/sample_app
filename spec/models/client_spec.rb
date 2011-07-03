@@ -41,12 +41,11 @@ describe Client do
       Client.create!(@attr)
       Client_with_duplicate_email = Client.new(@attr)
       Client_with_duplicate_email.should_not be_valid
-    end
-    
+  end
+  
   it "should reject email addresses identical up to case" do
       upcased_email = @attr[:email].upcase
       Client.create!(@attr.merge(:email => upcased_email))
-      Client_with_duplicate_email = Client.new(@attr)
       Client_with_duplicate_email.should_not be_valid
   end
   
@@ -174,8 +173,38 @@ describe Client do
       
     end
     
-  end
+  end     #end Password Encryption
+  
+  describe "client_addr associations" do
+    
+    before(:each) do
+      @client = Client.create(@attr)
+      @ca1 = Factory(:client_addr, :client => @client, :created_at => 1.day.ago)
+      @ca2 = Factory(:client_addr, :client => @client, :created_at => 1.hour.ago)
+    end
+    
+    it "should have a clients_addr attribute" do
+      @client.should respond_to(:client_addrs)
+    end
+    
+    it "should destroy associated client_addrs" do
+      @client.destroy
+      [@ca1, @ca2].each do |client_addr|
+        lambda do
+          ClientAddr.find(client_addr.id)
+        end.should raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+    
+    it "should have the right addresses in the right order" do
+      @client.client_addrs.should == [@ca1, @ca2]
+    end
+
+  end     #end Client_Addr Associations
+  
+  
 end
+
 
 # == Schema Information
 #
@@ -189,5 +218,6 @@ end
 #  created_at         :datetime
 #  updated_at         :datetime
 #  encrypted_password :string(255)
+#  salt               :string(255)
 #
 

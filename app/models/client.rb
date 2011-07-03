@@ -2,6 +2,9 @@ class Client < ActiveRecord::Base
   attr_accessor   :password
   attr_accessible :first_name, :last_name, :phone, :email, :password, :password_confirmation
   
+  has_many :client_addrs, :dependent => :destroy
+  has_many :quotes, :dependent => :destroy
+  
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :first_name,  :presence => true,
@@ -23,6 +26,7 @@ class Client < ActiveRecord::Base
   end
   
   class << self
+    
     def authenticate(email,submitted_password)
       client = find_by_email(email)
       return nil      if client.nil?
@@ -55,6 +59,7 @@ class Client < ActiveRecord::Base
     end
 end
 
+
 # == Schema Information
 #
 # Table name: clients
@@ -67,5 +72,6 @@ end
 #  created_at         :datetime
 #  updated_at         :datetime
 #  encrypted_password :string(255)
+#  salt               :string(255)
 #
 

@@ -8,8 +8,13 @@
 		</td>
 		<td class="sidebar round">
 			<strong>Name</strong> <%= @client.first_name %><br />
-			<strong>URL</strong> <%= link_to client_path(@client), @client %>
-			
+			<strong>URL</strong> <%= link_to client_path(@client), @client %><br />
 		</td>
 	</tr>
 </table>
+<% if @client.client_addrs.any? %>
+	<table class="client_addrs" summary="Client Addresses">
+		<%= render @client_addrs %>
+		<tr><%= link_to 'Add Address', '/createaddress' %></tr>
+	</table>
+<% end %>

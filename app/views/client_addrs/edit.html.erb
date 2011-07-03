@@ -1,0 +1,13 @@
+<h1>Edit Client Address</h1>
+<%= form_for(@client_addr) do |f| %>
+
+	<%= render 'client_addrs/fields', :f => f %>
+	
+	<div class="actions">
+		<%= f.submit "Update" %> | 
+		<%= link_to "delete", @client_addr, 	:method => :delete,
+											:confirm => "You sure?",
+											:title => @client_addr.title %>
+	</div>
+	
+<% end %>

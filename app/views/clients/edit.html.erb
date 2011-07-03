@@ -1,0 +1,25 @@
+<h1>Edit Client Profile</h1>
+<%= render 'shared/error_messages' %>
+<div id="edit_client_form">
+	<%= form_for(@client) do |f| %>
+
+		<%= render 'fields', :f => f %>
+
+		<div class="actions">
+			<%= f.submit "Update" %>
+		</div>
+
+	<% end %>
+</div>
+
+<div id="edit_client_addr">
+	<% if @client.client_addrs.any? %>
+			<%= render @client_addrs %>
+	<% end %>
+	<h4><a href="/createaddress">Add Address</a></h4>
+</div>
+
+<div class="edit_client_gravatar">
+	<%= gravatar_for @client %>
+	<a href="http://gravatar.com/emails" target=_blank>change</a>
+</div>
