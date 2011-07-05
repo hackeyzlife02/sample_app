@@ -1,20 +1,32 @@
-<table class="profile" summary="Profile information">
+<table class="profile round bottom-shadow gb-gradient" summary="Profile information">
 	<tr>
 		<td class="main">
 			<h1>
 				<%= gravatar_for @client %>
 				<%= @client.first_name %> <%= @client.last_name %>
 			</h1>
+			<% if @client.client_addrs.any? %>
+				<table class="client_addrs" summary="Client Addresses">
+					<%= render @client_addrs %>
+				</table>
+			<% end %>
 		</td>
-		<td class="sidebar round">
+		<td class="sidebar sidebar-gradient">
 			<strong>Name</strong> <%= @client.first_name %><br />
 			<strong>URL</strong> <%= link_to client_path(@client), @client %><br />
+			<strong>Quotes</strong> <%= @client.quotes.count %><br />
+			<div class="separator"></div>
+			<strong><%= link_to "Create New Quote", new_quote_path, :class => "create" %></strong>
+			<div class="separator"></div>
+			<strong><%= link_to 'Add Address', '/createaddress', :class => "create" %></strong>
+			<div class="separator"></div>
 		</td>
 	</tr>
 </table>
-<% if @client.client_addrs.any? %>
-	<table class="client_addrs" summary="Client Addresses">
-		<%= render @client_addrs %>
-		<tr><%= link_to 'Add Address', '/createaddress' %></tr>
+<% if @client.quotes.any? %>
+	<table class="quotes" summary="Client Quotes">
+		<h3 class="quotes_h">Quotes</h3>
+		<%= render @quotes %>
 	</table>
+	<%= will_paginate @quotes %>
 <% end %>

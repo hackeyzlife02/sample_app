@@ -3,7 +3,7 @@ class Quote < ActiveRecord::Base
   
   belongs_to :client
   
-  has_many :quote_item
+  has_many :quote_items
   
   default_scope :order => 'quotes.updated_at DESC'
   
@@ -11,6 +11,11 @@ class Quote < ActiveRecord::Base
                       :length => { :maximum => 45 }
                       
   validates :client_id, :presence => true
+  
+  def total
+    quote_items.inject(0) {|sum, n| n.price * n.qty + sum}
+  end
+  
 end
 
 # == Schema Information

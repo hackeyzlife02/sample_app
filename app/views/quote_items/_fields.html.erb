@@ -1,0 +1,32 @@
+
+<%= render 'shared/error_messages', :object => f.object %>
+<tr>
+	<td class="quote_item">
+		<div class="field">
+			<%= f.label :item_num %><br />
+			<%= f.text_field :item_num, :size => 15 %>
+		</div>
+		<div class="field">
+			<%= f.label :desc %><br />
+			<%= f.text_field :desc %>
+		</div>
+		<div class="field">
+			<%= f.label :notes %><br />
+			<%= f.text_field :notes %>
+		</div>
+	</td>
+	<td class="quote_item">
+		<div class="field">
+			<%= f.label :qty %><br />
+			<%= f.text_field :qty, :size => 6 %>
+		</div>
+		<div class="field">
+			<%= f.label :price %><br />
+			$ <%= f.text_field :price, :size => 8 %>
+		</div>
+		<div class="actions">
+			<%= f.submit "Add Item" %>
+		</div>
+	</td>
+	<%= hidden_field_tag(:quote_id, quote.id) %>
+</tr>

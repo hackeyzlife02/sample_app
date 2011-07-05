@@ -3,6 +3,53 @@ require 'spec_helper'
 describe ClientsController do
   render_views
 
+  describe "GET 'index'" do
+    
+    describe "for non-signed-in clients" do
+      it "should deny access" do
+        get :index
+        response.should redirect_to(signin_path)
+      end
+    end
+    
+    describe "for signed-in clients" do
+      before(:each) do
+        @client = test_sign_in(Factory(:client))
+        Factory(:client, :email => "jimmyj@example.com")
+        Factory(:client, :email => "jimmyjack@example.com")
+        
+        30.times do
+          Factory(:client, :email => Factory.next(:email))
+        end
+      end
+      
+      it "should be successful" do
+        get :index
+        response.should be_success
+      end
+      
+      it "should have the right title" do
+        get :index
+        response.should have_selector('title', :content => "All Clients")
+      end
+      
+      it "should have an element for each client" do
+        get :index
+        Client.paginate(:page => 1).each do |client|
+          response.should have_selector('li', :content => client.first_name)
+        end
+      end
+      
+      it "should paginate clients" do
+        get :index
+        response.should have_selector('div.pagination')
+        response.should have_selector('span.disabled', :content => "Previous")
+      end
+      
+    end
+    
+  end
+
   describe "GET 'show'" do
     
     before(:each) do
@@ -45,8 +92,28 @@ describe ClientsController do
       ca2 = Factory(:client_addr, :client => @client, :street => "Street 1",
                       :city => "City 1", :state => "State 1", :zip => 12345)
       get :show, :id => @client
-      response.should have_selector('span.street', :content => ca1.street)
-      response.should have_selector('span.street', :content => ca2.street)
+      response.should have_selector('span.address', :content => ca1.street)
+      response.should have_selector('span.address', :content => ca2.street)
+    end
+    
+    it "should show the client's quotes" do
+      quote1 = Factory(:quote, :client => @client, :qtitle => "Incline")
+      quote2 = Factory(:quote, :client => @client, :qtitle => "Maine")
+      get :show, :id => @client
+      response.should have_selector('span.qtitle', :content => quote1.qtitle)
+      response.should have_selector('span.qtitle', :content => quote2.qtitle)
+    end
+    
+    it "should paginate quotes" do
+      35.times { Factory(:quote, :client => @client, :qtitle => "Incline") }
+      get :show, :id => @client
+      response.should have_selector('div.pagination')
+    end
+    
+    it "should display the quote count" do
+      10.times { Factory(:quote, :client => @client, :qtitle => "Incline") }
+      get :show, :id => @client
+      response.should have_selector('td.sidebar', :content => @client.quotes.count.to_s)
     end
     
   end

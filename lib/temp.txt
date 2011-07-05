@@ -1,0 +1,34 @@
+before(:each) do
+  @client = Factory(:client)
+  @quote_attr = {
+    :qtitle => "Incline"
+  }
+  @quote = @client.quotes.create!(@quote_attr)
+  @item_attr = { 
+            :item_num => "K239-B",
+            :desc => "Rocks",
+            :qty => 2,
+            :price => 24.99,
+            :notes => "Requires some dirt."
+             }
+end
+
+it "should create a new instance given valid attributes" do
+    @quote.quote_items.create!(@item_attr)
+  end
+
+  describe "quote associations" do
+
+    before(:each) do
+      @quote_item = @quote.quote_items.create(@item_attr)
+    end
+
+    it "should have a quote attribute" do
+      @quote_item.should respond_to(:quote)
+    end
+
+    it "should have the right associated client" do
+      @quote_item.quote_id.should == @quote.id
+      @quote_item.quote.should == @quote
+    end
+  end

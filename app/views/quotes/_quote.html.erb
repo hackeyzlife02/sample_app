@@ -1,0 +1,10 @@
+<tr>
+	<td class="quote">
+		<span class="qtitle"><%= quote.qtitle %></span><br /> 
+		<span class="timestamp">
+			Last Updated <%= quote.updated_at %>.
+		</span>
+		<a href="<%= quote_path(quote) %>">view</a> | 
+		<a href="<%= edit_quote_path(quote) %>">edit</a>
+	</td>
+</tr>

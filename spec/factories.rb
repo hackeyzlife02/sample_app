@@ -25,6 +25,10 @@ Factory.define :quote do |quote|
   quote.association :client
 end
 
+Factory.sequence :qtitle do |n|
+  "Incline #{n}"
+end
+
 Factory.define :quote_item do |quote_item|
   quote_item.item_num "K23-B"
   quote_item.desc "Rocks"
@@ -32,4 +36,8 @@ Factory.define :quote_item do |quote_item|
   quote_item.price 24.99
   quote_item.notes "Requires some dirt"
   quote_item.association :quote
+end
+
+Factory.sequence :item_num do |n|
+  "KBQ-#{n}"
 end

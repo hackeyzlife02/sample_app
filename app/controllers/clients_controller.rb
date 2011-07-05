@@ -1,11 +1,17 @@
 class ClientsController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update]
+  before_filter :authenticate, :only => [:index, :edit, :update]
   before_filter :correct_client, :only => [:edit, :update]
+  
+  def index
+    @title = "All Clients"
+    @clients = Client.paginate(:all, :page => params[:page], :per_page => 10)
+  end
   
   def show
     @client = Client.find(params[:id])
     @client_addrs = @client.client_addrs
     @client_addr = @client.client_addrs.first
+    @quotes = @client.quotes.paginate(:page => params[:page], :per_page => 5)
     @title = @client.first_name + " " + @client.last_name
   end
   
@@ -15,7 +21,6 @@ class ClientsController < ApplicationController
   end
   
   def create
-    
     @client = Client.new(params[:client])
     if @client.save
       sign_in @client
@@ -24,7 +29,6 @@ class ClientsController < ApplicationController
       @title = "Sign Up"
       render 'new'
     end
-
   end
   
   def destroy

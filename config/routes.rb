@@ -1,8 +1,11 @@
 SampleApp::Application.routes.draw do
 
-  resources :clients
+  get "quote_items/new"
+
+  resources :clients, :quotes, :quote_items
   resources :sessions, :only => [:new, :create, :destroy]
   resources :client_addrs, :only => [:new, :create, :edit, :update, :destroy]
+  
 
   root :to => "pages#home"
 

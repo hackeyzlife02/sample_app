@@ -76,5 +76,11 @@ describe "LayoutLinks" do
       response.should have_selector("a",  :href => edit_client_path(@client),
                                           :content => "Settings")
     end
+    
+    it "should have a clients link" do
+      visit root_path
+      response.should have_selector("a",  :href => clients_path,
+                                          :content => "Clients")
+    end
   end
 end

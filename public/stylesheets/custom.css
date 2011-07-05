@@ -3,7 +3,7 @@
 }
 
 body {
-	background: #eeeeee;
+	background: #585858;
 }
 
 header {
@@ -22,20 +22,57 @@ section {
 	background: #fff;
 }
 
+/* Shadows */
+.shadow {
+	-webkit-box-shadow: 0px 2px 8px 1px #000000;
+	-moz-box-shadow: 0px 2px 8px 1px #000000;
+	box-shadow: 0px 2px 5px 1px #000000;
+}
+
+.bottom-shadow {
+	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:    0px 2px 2px rgba(0, 0, 0, 0.3);
+	box-shadow:         0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Background Gradients 0e0e0e 7d7e7d*/
+
+.gb-gradient {
+	background: #7d7e7d; /* Old browsers */
+	background: -moz-linear-gradient(top, #7d7e7d 0%, #515151 36%, #343535 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(36%,#515151), color-stop(100%,#343535)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #7d7e7d 0%,#515151 36%,#343535 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #7d7e7d 0%,#515151 36%,#343535 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #7d7e7d 0%,#515151 36%,#343535 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#343535',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, #7d7e7d 0%,#515151 36%,#343535 100%); /* W3C */
+}
+
+.sidebar-gradient {
+	background: #b2b2b2; /* Old browsers */
+	background: -moz-linear-gradient(top, #b2b2b2 0%, #b2b2b2 36%, #777777 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b2b2b2), color-stop(36%,#b2b2b2), color-stop(99%,#777777)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #b2b2b2 0%,#b2b2b2 36%,#777777 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #b2b2b2 0%,#b2b2b2 36%,#777777 99%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #b2b2b2 0%,#b2b2b2 36%,#777777 99%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b2b2b2', endColorstr='#777777',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, #b2b2b2 0%,#b2b2b2 36%,#777777 99%); /* W3C */
+}
+
 /* Links */
 
 a {
-	color: #09c;
+	color: #a67f00;
 	text-decoration:none;
 }
 
 a:hover {
-	color:#069;
+	color:#b79932;
 	text-decoration:underline;
 }
 
 a:visited {
-	color: #069;
+	color: #a67f00;
 }
 
 /* Navigation */
@@ -64,7 +101,7 @@ nav ul li a {
 }
 
 nav ul li a:visited {
-	color:#09c;
+	color:#a67f00;
 }
 
 nav ul li a:hover {
@@ -89,9 +126,9 @@ a.signup_button {
 /* Round Corners */
 
 .round {
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 
 /* Footer */
@@ -112,7 +149,7 @@ footer nav {
 
 table.profile {
 	width: 100%;
-	margin-bottom: 0;
+	margin-bottom: 15px;
 }
 
 table.main {
@@ -120,11 +157,50 @@ table.main {
 	padding: 1em;
 }
 
+table.client_addrs {
+	padding:1.1em 1.1em 0 1.1em;
+}
+
+table.client_addrs h3 {
+	font-size:1.1em;
+	color: #e5e5e5;
+	border-right:1px solid #000;
+	margin-bottom:2px;
+	margin-right: 5px;
+	padding-right:8px;
+	display:inline;
+}
+
+table.client_addrs span {
+	color: #bfbfbf;
+}
+
 td.sidebar {
 	width: 30%;
 	padding: 1em;
 	vertical-align: top;
-	background: #eee;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+td.sidebar a.create {
+	color: #324422;
+}
+
+td.sidebar a.create:hover {
+	color: #486030;
+}
+
+div.separator {
+	height:1px;
+	width:90%;
+	background: #000;
+	margin-top:10px;
+	margin-bottom:10px;
 }
 
 .profile img.gravatar {
@@ -179,6 +255,14 @@ div.field, div.actions {
 	list-style: square;
 }
 
+ul.clients {
+	margin-top:1em;
+}
+
+ul.clients li {
+	list-style:none;
+}
+
 #edit_client_form {
 	width:50%;
 	display:inline;
@@ -197,3 +281,20 @@ div.field, div.actions {
 	width:50%;
 	padding-top:15px;
 }
+
+div.client_info img {
+  padding-right: 0.1em;
+}
+
+div.client_info a {
+  text-decoration: none;
+}
+
+div.client_info span.client_name {
+  position: absolute;
+}
+
+div.client_info span.quotes {
+  font-size: 80%;
+}
+

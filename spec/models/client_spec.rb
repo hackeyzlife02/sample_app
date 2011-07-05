@@ -202,6 +202,34 @@ describe Client do
 
   end     #end Client_Addr Associations
   
+  describe "quote associations" do
+    
+    before(:each) do
+      @client = Client.create(@attr)
+      @quote1 = Factory(:quote, :client => @client, :created_at => 1.day.ago)
+      @quote2 = Factory(:quote, :client => @client, :created_at => 1.hour.ago)
+    end
+    
+    it "should have a quotes attribute" do
+      @client.should respond_to(:quotes)
+    end
+    
+    it "should have the right quotes in the right order" do
+      @client.quotes.should == [@quote2, @quote1]
+    end
+    
+    it "should destroy associated quotes" do
+      @client.destroy
+      [@quote1, @quote2].each do |quote|
+        lambda do
+          Quote.find(quote.id)
+        end.should raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+    
+  end         #end Quote Associations
+  
+  
   
 end
 

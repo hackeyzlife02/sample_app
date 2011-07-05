@@ -1,0 +1,11 @@
+<h1><%= @quote.qtitle %></h1>
+<h3>Client: <%= @client.first_name %> <%= @client.last_name %></h3>
+<%= link_to "Back to Client's Profile", @client %>
+<% if @quote.quote_items.any? %>
+	<table class="quote_items">
+		<%= render @quote_items %>
+	</table>
+	<%= will_paginate @quote_items %>
+<% end %>
+<br />
+<% link_to "Back to Client's Profile", @client %>

@@ -1,0 +1,100 @@
+form.new_quote {
+  margin-bottom: 2em;
+}
+
+form.new_quote textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+
+span.qtitle {
+	font-size:1.14em;
+	font-weight:bold;
+	color: #1a2f4e;
+}
+
+h1.quote {
+	margin-bottom: 0.3em;
+}
+
+h3.quotes_h {
+	margin-bottom:-15px;
+}
+
+table.quotes {
+  margin-top: 2em;
+}
+
+table.quotes tr {
+  height: 70px;
+}
+
+table.quotes a {
+	font-size:.9em;
+	text-decoration:underline;
+}
+
+table.quotes tr td.quote {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 6px;
+}
+
+table.quotes tr td.quote span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+table.quote_items {
+  margin-top: 2em;
+}
+
+table.quote_items tr {
+  height: 70px;
+}
+
+table.quote_items a {
+	font-size:.9em;
+	text-decoration:underline;
+}
+
+table.quote_items tr td.quote_item {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 6px;
+}
+
+table.quote_items tr td.quote_item p {
+	font-size:1.1em;
+	font-weight:bold;
+}
+
+table.quote_items tr td.quote_item span.item_attr {
+	display:inline;
+	font-size:.9em;
+	font-weight:normal;
+}
+
+div.new-item {
+	width:100%;
+	padding:.1em;
+}
+
+div.first-item {
+	clear:left;
+}
+
+div.item-field {
+	width:25%;
+	display:inline;
+	float:left;
+	padding: .2em;
+}
+
+div.item-row label {
+	display:block;
+	margin-bottom:-5px;
+	color: #000;
+	font-size:1.05em;
+}
