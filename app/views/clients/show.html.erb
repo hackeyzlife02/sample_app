@@ -13,6 +13,8 @@
 		</td>
 		<td class="sidebar sidebar-gradient">
 			<strong>Name</strong> <%= @client.first_name %><br />
+			<strong>Phone</strong> <%= @client.phone %><br />
+			<strong>E-Mail</strong><span class="email"><%= mail_to @client.email %></span>
 			<strong>URL</strong> <%= link_to client_path(@client), @client %><br />
 			<strong>Quotes</strong> <%= @client.quotes.count %><br />
 			<div class="separator"></div>

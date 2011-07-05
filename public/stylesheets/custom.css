@@ -195,6 +195,11 @@ td.sidebar a.create:hover {
 	color: #486030;
 }
 
+td.sidebar span.email {
+	display:block;
+	margin-top:-2px;
+}
+
 div.separator {
 	height:1px;
 	width:90%;

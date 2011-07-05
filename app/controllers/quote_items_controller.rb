@@ -8,7 +8,7 @@ class QuoteItemsController < ApplicationController
     @quote = Quote.find(params[:quote_id])
     @quote_item  = @quote.quote_items.build(params[:quote_item])
     if @quote_item.save
-      @quote_items = @quote.quote_item.paginate(:page => params[:page], :per_page => 10)
+      @quote_items = @quote.quote_items.paginate(:page => params[:page], :per_page => 10)
       flash[:success] = "#{@quote_item.item_num} successfully added."
       redirect_to edit_quote_path(@quote.id)
     else

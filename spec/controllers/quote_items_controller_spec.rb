@@ -74,6 +74,7 @@ describe QuoteItemsController do
         @client = test_sign_in(Factory(:client))
         @quote = Factory(:quote, :client => @client, :qtitle => "Incline")
         @quote_item = Factory(:quote_item, :quote => @quote, :item_num => "KBQ-Z1")
+        @quote_item1 = Factory(:quote_item, :quote => @quote, :item_num => "KBQ-Z3")
       end
 
       describe "failure" do

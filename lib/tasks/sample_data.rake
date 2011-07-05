@@ -42,10 +42,24 @@ namespace :db do
       )
     end
     
+    index = 0
     Client.all.each do |client|
-      qtitle = "Incline"
-      client.quotes.create!(
+      index += 1
+      qtitle = client.first_name + "-" + index.to_s
+      quote = client.quotes.create!(
         :qtitle => qtitle
+      )
+      item_num = "ksx-" + quote.id.to_s
+      desc = Faker::Address.city
+      qty = 2
+      price = 22.99
+      notes = "Requires dirt."
+      quote_item = quote.quote_items.create!(
+        :item_num => item_num,
+        :desc => desc,
+        :qty => qty,
+        :price => price,
+        :notes => notes
       )
     end
     

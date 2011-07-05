@@ -1,15 +1,15 @@
 <tr>
 	<td class="quote_item">
-		<span class="qtitle"><%= quote_item.item_num %></span><br />
-		<p>Description: <span class="item_attr"><%= quote_item.desc %></span></p>
-		<p><span class="item_attr"><%= quote_item.qty %></span></p>
-		<p><span class="item_attr"><%= number_to_currency(quote_item.price) %></span></p>
-
-		<p><span class="item_attr"><%= number_to_currency(quote_item.total) %></span></p>
-		<p><span class="item_attr"><%= quote_item.notes %></span></p>
+		<span class="qtitle"><%= quote_item.item_num %></span>
 		<%= link_to "edit", edit_quote_item_path(quote_item) %> | 
 		<%= link_to "delete", quote_item, 	:method => :delete,
 											:confirm => "You sure?",
-											:title => quote_item.item_num %>
+											:title => quote_item.item_num %><br />
+		<p>Description: <span class="item_attr"><%= quote_item.desc %></span></p>
+		<p><span class="item_attr"><%= quote_item.qty %></span></p>
+		<p><span class="item_attr"><%= number_to_currency(quote_item.price) %></span></p>
+		<p><span class="item_attr"><%= number_to_currency(quote_item.total) %></span></p>
+		<p>Notes: <span class="item_attr"><%= quote_item.notes %></span></p>
+		
 	</td>
 </tr>
